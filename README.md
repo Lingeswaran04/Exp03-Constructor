@@ -4,91 +4,92 @@ To write a C# program to calculate the salary of an employee by passing the name
 
 ## Algorithm:
 ### Step1:
-The program starts by prompting the user to input various details of the employee, such as name, designation, years of experience, basic salary, and insurance amount. It uses Console.ReadLine() to read input from the user.
 
-### Step2:
-After the user enters the employee details, the program creates an Employee object by passing these details to the constructor. The Employee class encapsulates the properties and methods related to an employee, such as name, designation, years of experience, basic salary, and insurance amount.
+Initialize the program with the system library.
 
-### Step3:
-The program then calls the DisplayDetails() method of the Employee class to display the entered employee details. This method prints out the employee's name, designation, years of experience, basic salary, and insurance amount.
+### Step2 :
+Define the Employee Class and set it as public.
 
-### Step4:
-After displaying the employee details, the program calculates the gross pay for the employee.It calls the CalculateGrossPay() method of the Employee class to perform this calculation. This method calculates the gross pay based on the provided information (basic salary, insurance amount, HRA and TA).
+### Step3 :
+Define the variables.
 
-### Step5:
-Once the gross pay is calculated, the program displays it to the user. It uses Console.WriteLine() to print out the calculated gross pay in currency format.
+### Step4 :
+Write a parameterized constructor under the class Employee.
 
-### Step6:
-After displaying the gross pay, the program execution terminates, and the user is returned to the command line or console prompt.
+### Step5 :
+Define a function to calculate the salary.
+
+### Step6 :
+Define the display() function to print the output.
 
 ## Program:
-```C#
+```
 using System;
 
-class Employee
+namespace EmployeeSalary
 {
-    string name;
-    string designation;
-    int noOfExperience;
-    float basicSalary;
-    float insuranceAmount,hra,ta,grosspay;
-
-    public Employee(string name, string designation, int noOfExperience, float basicSalary, float insuranceAmount)
+    class Employee
     {
-        this.name = name;
-        this.designation = designation;
-        this.noOfExperience = noOfExperience;
-        this.basicSalary = basicSalary;
-        this.insuranceAmount = insuranceAmount;
+        public string name;
+        public string designation;
+        public int noofexperience;
+        public double basicSalary;
+        public double insuranceAmount;
+
+        public Employee(string name, string designation, int noofexperience, double basicSalary, double insuranceAmount)
+        {
+            this.name = name;
+            this.designation = designation;
+            this.noofexperience = noofexperience;
+            this.basicSalary = basicSalary;
+            this.insuranceAmount = insuranceAmount;
+        }
+
+        public double salary()
+        {
+            double hra = 0.2 * basicSalary;
+            double ta = 0.1 * basicSalary;
+            double grossSalary = basicSalary + hra + ta - insuranceAmount;
+            return grossSalary;
+        }
+
+        public void display()
+        {
+            Console.WriteLine($"Employee Name: {name}\nDesignation: {designation}\nNo of experience: {noofexperience}\nBasic Salary: {basicSalary}\nInsurance Amount: {insuranceAmount}\nGross Salary: {salary()}");
+
+        }
     }
 
-    public double CalculateSalary()
+    class Program
     {
-        hra=(20)/100*basicSalary;
-        ta=(10)/100*basicSalary;
-        grosspay=basicSalary+hra+ta-insuranceAmount;
-    }
+         static void Main(string[] args)
+        {
+            Console.WriteLine("Enter employee name: ");
+            string name = Console.ReadLine();
 
-    public void DisplaySalary()
-    {
-        Console.WriteLine($"Employee Name: {name}");
-        Console.WriteLine($"Designation: {designation}");
-        Console.WriteLine($"No. of Experience: {noOfExperience} years");
-        Console.WriteLine($"Basic Salary: {basicSalary:C}");
-        Console.WriteLine($"Insurance Amount: {insuranceAmount:C}");
-        Console.WriteLine($"Calculated Salary: {CalculateSalary():C}");
-    }
-}
+            Console.WriteLine("Enter designation: ");
+            string designation = Console.ReadLine();
 
-class Program
-{
-    static void Main(string[] args)
-    {
-        Console.WriteLine("Enter Employee Name:");
-        string name = Console.ReadLine();
+            Console.WriteLine("Enter number of years of experience: ");
+            int noofexperience = int.Parse(Console.ReadLine());
 
-        Console.WriteLine("Enter Designation:");
-        string designation = Console.ReadLine();
+            Console.WriteLine("Enter basic salary: ");
+            double basicSalary = double.Parse(Console.ReadLine());
 
-        Console.WriteLine("Enter No. of Years Experience:");
-        int noOfExperience = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter insurance amount: ");
+            double insuranceAmount = double.Parse(Console.ReadLine());
 
-        Console.WriteLine("Enter Basic Salary:");
-        double basicSalary = double.Parse(Console.ReadLine());
-
-        Console.WriteLine("Enter Insurance Amount:");
-        double insuranceAmount = double.Parse(Console.ReadLine());
-
-        Employee employee = new Employee(name, designation, noOfExperience, basicSalary, insuranceAmount);
-
-        employee.DisplaySalary();
-    }
+            Employee employee = new Employee(name, designation, noofexperience, basicSalary, insuranceAmount);
+            employee.display();
+        }
+    }
+    
 }
 ```
 
 ## Output:
-![Screenshot (37)](https://github.com/Lingeswaran04/Exp03-Constructor/assets/119103865/9857d5af-5533-4010-8590-22d14a547363)
+![Screenshot (37)](https://github.com/Lingeswaran04/Exp03-Constructor/assets/119103865/e7e25e67-1c51-4f32-aaa7-23a44134ab0f)
 
 
 ## Result:
-Thus the above C# program to calculate the salary of an employee by passing the name, designation, noofexperience, basic salary and insurance amount through constructor is successfully executed
+Thus, a C# program is written to calculate the salary of an employee using a constructor is implemented and the output is verified.
